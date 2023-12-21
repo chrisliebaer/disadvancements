@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"minVersion": "0.7.10",
+	"package": "de.chrisliebaer.disadvancements.mixin",
+	"refmap": "mixins.disadvancements.refmap.json",
+	"target": "@env(DEFAULT)",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"MixinAdvancementList"
+	]
+}
