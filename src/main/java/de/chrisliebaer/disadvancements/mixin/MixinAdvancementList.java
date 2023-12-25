@@ -16,7 +16,7 @@ import java.util.Set;
  */
 @Mixin(AdvancementList.class)
 public class MixinAdvancementList {
-
+	
 	@Inject(at = @At("HEAD"), method = "remove(Lnet/minecraft/advancements/Advancement;)V", cancellable = true)
 	private void remove(Advancement advancement, CallbackInfo ci) {
 		ci.cancel();
@@ -29,6 +29,7 @@ public class MixinAdvancementList {
 	
 	@Inject(at = @At("HEAD"), method = "add(Ljava/util/Map;)V", cancellable = true)
 	private void add(Map<ResourceLocation, Advancement.Builder> map, CallbackInfo ci) {
-		ci.cancel();
+		// only let vanilla advancements be added
+		map.entrySet().removeIf(entry -> !"minecraft".equals(entry.getKey().getNamespace()));
 	}
 }
